@@ -1,0 +1,10 @@
+test:main.o area_rect.o area_circle.o
+	$(CC) $^ -o $@
+main.o:main.c
+	$(CC) -c $<
+area_rect.o:area_rect.c
+	$(CC) -c $<
+area_circle.o:area_circle.c
+	$(CC) -c $<
+clean:
+	rm *.o
