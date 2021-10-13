@@ -1,4 +1,6 @@
- /*C program to add two numbers using pointers
+//*********DAY1****
+
+/*C program to add two numbers using pointers
  '&' is the address of operator and '*' is value at the address operator.*/
 /*#include <stdio.h>
 
@@ -239,7 +241,7 @@ printf(" %d", *p);
 printf("\n");
 }*/
 //funtion pointer
-#include<stdio.h>
+/*#include<stdio.h>
 int sum(int a, int b);
 int main()
 {
@@ -250,4 +252,88 @@ printf("%d\n",ptr(3,4));//printf("%d",result);
 int sum(int a, int b)
 {
 return a+b;
-}	
+}	*/
+
+
+ //**********DAY2******
+
+//copy one string to other string using pointers
+/*#include<stdio.h>
+
+void copy_string(char*, char*);
+
+int main()
+{
+    char s[100], d[100];    
+    printf("Enter source string\n");    
+    scanf("%s",s);    
+    copy_string(d, s);    
+    printf("destination string is:%s\n", d);    
+    return 0;
+}
+
+void copy_string(char *d, char *s)
+{
+    while(*s)
+    {
+        *d = *s;        
+        s++;        
+        d++;
+    }    
+    *d = '\0';
+}*/
+//string concatenation using pointers
+/*#include<stdio.h>
+
+char*  copy_string(char*, char*);
+
+int main()
+{
+    char s[100], d[100];    
+    printf("Enter source string\n");    
+    scanf("%s",s);    
+    printf("enter destination string\n");
+    scanf("%s",d);
+   char* dest= copy_string(d, s);    
+    printf("destination string is:%s\n", dest);    
+    return 0;
+}
+char* copy_string(char *d, char *s)
+{	int i,j;
+	for(j=0;d[j];j++);
+	for(i=0;s[i];i++,j++)
+	d[j]=s[i];
+	d[j]='\0';
+	return d; 
+}*/
+//  BOTH STRINGS ARE QUAL USING POINTERS
+#include<stdio.h>
+int comp_string(char*, char*);
+int count=0;
+int main()
+{
+    char s[100], d[100];    
+    printf("Enter source string\n");    
+    scanf("%s",s);    
+    printf("enter destination string\n");
+    scanf("%s",d);
+   int k= comp_string(d, s);    
+    if(k>1)
+    printf("both strings are equal\n");
+    else
+    printf("strings not equal\n");   
+    return 0;
+}
+int comp_string(char *d, char *s)
+{	if(*d=='\0'&& *s=='\0')
+	return count;
+	if(*d==*s)
+	{
+		d++;
+		s++;
+		count++;
+		return comp_string(d,s);
+	}
+		return -1;
+		
+}
