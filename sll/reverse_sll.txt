@@ -1,0 +1,99 @@
+*****header.h************
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+	{
+		int data;
+		struct node *next;
+	};
+
+struct node* add(struct node* head,int ele);
+struct node* reverse(struct node* head);
+void display(struct node* head);
+********main*******
+#include"header.h"
+
+int main()
+{ 	
+	struct node* head=NULL;
+
+	head=add(head,1);
+	head=add(head,2);
+	head=add(head,3);
+	head=add(head,4);
+	head=add(head,5);
+	
+	printf("the given list\n");
+	display(head);
+	head=reverse(head);
+	printf("after the reversing list\n");
+	display(head);
+}
+*******add.c*************
+#include"header.h"
+
+
+struct node* add(struct node* head,int ele)
+{
+	static struct node* last=NULL;
+	struct node* new=(struct node*)malloc(sizeof(struct node));
+	new->data=ele;
+	new->next=NULL;
+	if(head==NULL)
+	{
+		head=new;
+		last=new;
+	}
+	else
+	{
+		last->next=new;
+		last=new;
+	}
+	return head;
+}
+	
+**********displya.c**********
+#include"header.h"
+void display(struct node* head)
+{
+	struct node* temp=head;
+	while(temp!=NULL)
+		{
+			printf("%d",temp->data);
+			temp=temp->next;
+		}
+}
+*********reverse.c*****
+#include"header.h"
+struct node* reverse(struct node* head)
+{
+	struct node* current=head,*prev=NULL,*next=NULL;
+	
+	while(current!=NULL)
+	{
+		next=current->next;
+		current->next=prev;
+		prev=current;
+		current=next;
+
+	}
+	head=prev;
+
+	return head;
+}
+
+*************makefile*********
+
+CC= gcc
+CFLAGS= -c
+
+final: main.o add.o display.o reverse.o
+	gcc $^ -o $@
+
+.c:.o
+	$(CC) $(CFLAGS) $^
+
+
+clean:
+	rm -f final
+	rm *.o
