@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct node
+{
+    struct node *link;
+    struct data
+    {
+        int val;
+    }nested;
+}node;
+struct node *first=NULL;
+struct node *last=NULL;
+void create()
+{
+    int n;
+    scanf("%d",&n);
+    struct node *ptr=(struct node*)malloc(sizeof(struct node));
+    ptr->nested.val=n;
+    ptr->link=NULL;
+    if(first==NULL)
+    {
+        first=last=ptr;
+    }
+    else
+    {
+        last->link=ptr;
+        last=ptr;
+    }
+    
+}
+void display()
+{
+    if(first==NULL)
+    {
+        printf("list is empty\n");
+    }
+    else
+    {
+    struct node *temp=first;
+    while(temp!=NULL)
+    {
+        printf(" %d",temp->nested.val);
+        temp=temp->link;
+    }
+    }
+    
+}
+void alternate()
+{
+    int count=0;
+    while(first!=NULL)
+{
+    if(count%2==0)
+    printf(" %d",first->nested.val);
+    count++;
+    first=first->link;
+}
+}
+
+
+
+int main()
+{
+    
+    create();
+    create();
+    create();
+    create();
+    create();
+    
+    printf("before alternate nodes\n");
+    display();
+    printf("after alternate nodes\n");
+    alternate();
+
+    
+}
